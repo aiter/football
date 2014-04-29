@@ -39,10 +39,10 @@ public class TrieTree {
 	}
 
 	/**
-	 * 插入word
+	 * 初始化时，插入word
 	 * @param str
 	 */
-	public void insert(String str,String type) {
+	private void insert(String str,String type) {
 		if (str == null || str.length() == 0) {
 			return;
 		}
@@ -50,8 +50,6 @@ public class TrieTree {
 		str = str.toLowerCase();
 		char[] letters = str.toCharArray();//A C 米 兰
 		for (int i = 0, len = str.length(); i < len; i++) {
-//			System.out.println(letters[i]);
-//			System.out.println(pos);
 			char c = letters[i];
 			if (!node.son.containsKey(c)) {
 				TrieNode son = new TrieNode(type);
@@ -64,7 +62,6 @@ public class TrieTree {
 	}
 
 
-	// search a word in the tree.Complete matching.
 	/**
 	 * 查找一个字符串的描述。没有返回null 
 	 */
@@ -88,7 +85,7 @@ public class TrieTree {
 	}
 	
 	/**
-	 * 
+	 * 分词，返回字符串
 	 * @param str
 	 * @param wordSpilt
 	 * @return
@@ -124,7 +121,6 @@ public class TrieTree {
 					i=i-continueChar;
 					continueChar=0;
 				}
-//				start = i;
 				node=root;
 			}
 		}
@@ -135,10 +131,13 @@ public class TrieTree {
 		}
 		
 		return tmp;
-		
-//		return segWords(new StringReader(txt), wordSpilt);
 	}
 	
+	/**
+	 * 提取双方球队的比分或者vs
+	 * @param str 输入字符串，比如视频标题、用户搜索串
+	 * @return
+	 */
 	public String segTeamVS(String str) {
 		String wordSpilt = ";";
 		String wordsInfo = segWords(str, wordSpilt);
@@ -206,7 +205,10 @@ public class TrieTree {
 		
 	}
 	
-	
+	/**
+	 * 读取jar包中的字典文件
+	 * @throws IOException
+	 */
 	public void init() throws IOException {
 		InputStream inputStream = null;
 		inputStream = TrieTree.class.getClassLoader().getResourceAsStream("data"+File.separator+"wordssports.dic");
@@ -228,31 +230,5 @@ public class TrieTree {
 	        }  
 		}
 		inputStream.close();
-		
-//		URL url = TrieTree.class.getClassLoader().getResourceAsStream("/data/"+File.separator+"wordssports.dic")
-////		if(url != null) {
-////			try {
-//				List<String> lines = FileUtils.readLines(
-//						new File(url.getFile()+File.separator+"wordssports.dic"),"UTF-8");
-//				if(lines!=null && lines.size()>0){
-//					for (String line : lines) {
-//						if(line.startsWith("#")){
-//							continue;
-//						}
-//						String [] infos = line.split(" ");
-//						if(infos.length==2){
-//							String [] names = infos[0].split("/");
-//							for (String name : names) {
-//								insert(name, infos[1]);
-//								count++;
-//							}
-//						}
-//					}
-//				}
-				
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
 	}
 }
