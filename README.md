@@ -3,7 +3,7 @@ football
 根据词典，对字符串进行足球类的处理
 
 使用方法
-===========
+-------
 TrieTree tree = new TrieTree();   
 tree.init();
 
