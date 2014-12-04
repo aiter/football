@@ -52,13 +52,14 @@ public class TrieTree {
 		for (int i = 0, len = str.length(); i < len; i++) {
 			char c = letters[i];
 			if (!node.son.containsKey(c)) {
-				TrieNode son = new TrieNode(type);
+				TrieNode son = new TrieNode("");
 				node.son.put(c, son);
 			}
 			
 			node = node.son.get(c);
 		}
 		node.isEnd = true;
+		node.val = type;
 	}
 
 
@@ -188,7 +189,9 @@ public class TrieTree {
 		
 		System.out.println(tree.segWords("[www.jzwzx.com]4月13日 英超第34轮 斯旺西VS切尔西 国语 下半场", "|"));
 		
+		System.out.println(tree.segWords("巴洛特利世界波 AC米兰1-0博洛尼亚RAI集锦", "|"));
 		
+		 
 		
 		System.out.println(tree.segTeamVS("巴洛特利世界波 AC米兰1-0博洛尼亚RAI集锦"));
 		
